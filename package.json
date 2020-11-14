@@ -1,0 +1,23 @@
+{
+  "name": "cropiot-telemetry-server",
+  "version": "1.0.0",
+  "description": "MQTT server for telemetry capture",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run pm2",
+    "pm2": "node ./node_modules/pm2/bin/pm2-runtime ecosystem.config.js",
+    "db-local:migrate": "node ./src/db/dynamodb/migrations/index.js",
+    "csv:export": "node ./src/csv-export.js",
+    "ssh": "docker exec -u root -it telemetry-server sh"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aedes": "^0.44.0",
+    "aws-sdk": "^2.792.0",
+    "dynamodb-to-csv": "^0.2.0",
+    "pm2": "^4.5.0",
+    "uuid": "^8.3.1"
+  }
+}

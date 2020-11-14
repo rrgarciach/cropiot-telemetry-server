@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+
+  telemetry-server:
+    container_name: telemetry-server
+    restart: on-failure
+    build: .
+    command: yarn start
+    env_file: .env
+    volumes:
+      - .:/home/node/app/
+      - /home/node/app/node_modules/
+    ports:
+      - 1883:1883
+    depends_on:
+      - telemetry-server-dynamodb
+    environment:
+      NODE_ENV: development
+      PORT: 1883
+      DYNAMODB_HOST: http://telemetry-server-dynamodb:8000
+    external_links:
+      - telemetry-server-dynamodb
+    network_mode: bridge
+
+  telemetry-server-dynamodb:
+    container_name: telemetry-server-dynamodb
+    image: amazon/dynamodb-local
+    restart: on-failure
+    ports:
+      - 8042:8000
+    network_mode: bridge
