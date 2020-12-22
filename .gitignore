@@ -62,3 +62,6 @@ config/config.json
 
 # Generated files
 **/**.csv
+
+# sqlite files
+*.sqlite*

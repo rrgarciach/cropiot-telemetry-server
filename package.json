@@ -8,6 +8,7 @@
     "start": "npm run pm2",
     "pm2": "node ./node_modules/pm2/bin/pm2-runtime ecosystem.config.js",
     "db-local:migrate": "node ./src/db/dynamodb/migrations/index.js",
+    "sqlite:migrate": "node ./src/db/dynamodb/migrations/sqlite.js",
     "csv:export": "node ./src/csv-export.js",
     "ssh": "docker exec -u root -it telemetry-server sh"
   },
@@ -19,6 +20,7 @@
     "dynamodb-to-csv": "^0.2.0",
     "mqtt": "^4.2.5",
     "pm2": "^4.5.0",
+    "sqlite3": "^5.0.0",
     "uuid": "^8.3.1"
   }
 }

@@ -17,23 +17,22 @@ services:
       - /home/node/app/node_modules/
     ports:
       - 1883:1883
-    depends_on:
-      - telemetry-server-dynamodb
+#    depends_on:
+#      - telemetry-server-dynamodb
     environment:
-      NODE_ENV: development
       PORT: 1883
-      LOCAL_DYNAMODB_HOST: http://telemetry-server-dynamodb:8000
-    external_links:
-      - telemetry-server-dynamodb
+#      LOCAL_DYNAMODB_HOST: http://telemetry-server-dynamodb:8000
+#    external_links:
+#      - telemetry-server-dynamodb
     network_mode: bridge
 
-  telemetry-server-dynamodb:
-    container_name: telemetry-server-dynamodb
-    image: amazon/dynamodb-local
-    restart: on-failure
-    command: -jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal
-    volumes:
-      - dynamodb_data:/home/dynamodblocal
-    ports:
-      - 8042:8000
-    network_mode: bridge
+#  telemetry-server-dynamodb:
+#    container_name: telemetry-server-dynamodb
+#    image: amazon/dynamodb-local
+#    restart: on-failure
+#    command: -jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal
+#    volumes:
+#      - dynamodb_data:/home/dynamodblocal
+#    ports:
+#      - 8042:8000
+#    network_mode: bridge

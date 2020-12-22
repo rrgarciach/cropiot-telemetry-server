@@ -3,7 +3,7 @@ const AWS = require('aws-sdk');
 AWS.config.update({
   accessKeyId: 'xxx',
   secretAccessKey: 'xxx',
-  endpoint: process.env.LOCAL_DYNAMODB_HOST,
+  endpoint: process.env.DYNAMODB.LOCAL_DYNAMODB_HOST,
 });
 
 const dynamodb = new AWS.DynamoDB();

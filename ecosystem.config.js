@@ -2,18 +2,27 @@ const config = {
   production: {
     apps: [
       {
-        name: 'api',
+        name: 'mqtt',
         script: './index.js',
         exec_mode: 'fork',
         merge_logs: true,
         time: true,
+        autorestart: true
       },
+      {
+        name: 'cron',
+        script: 'git pull && pm2 restart mqtt',
+        exec_mode: 'fork',
+        cron_restart: '* * * * *',
+        time: true,
+        autorestart: false
+      }
     ]
   },
   development: {
     apps: [
       {
-        name: 'api',
+        name: 'mqtt',
         script: './index.js',
         exec_mode: 'fork',
         watch: true,
@@ -26,6 +35,7 @@ const config = {
           './node_modules',
           '.config',
           '.ngrok',
+          '*.sqlite*',
         ],
         time: true,
       },
