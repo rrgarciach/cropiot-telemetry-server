@@ -1,10 +1,9 @@
 const AWS = require('aws-sdk');
 
 AWS.config.update({
-  region: process.env.AWS_REGION,
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID || 'xxx',
-  secretAccessKey: process.env.AWS_SECRET_KEY || 'xxx',
-  endpoint: process.env.DYNAMODB_HOST,
+  accessKeyId: 'xxx',
+  secretAccessKey: 'xxx',
+  endpoint: process.env.LOCAL_DYNAMODB_HOST,
 });
 
 const dynamodb = new AWS.DynamoDB();

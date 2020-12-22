@@ -17,7 +17,16 @@ const config = {
         script: './index.js',
         exec_mode: 'fork',
         watch: true,
-        ignore_watch: ['.git/', '.idea', '.pm2', '**/spec/*.yaml', 'migrations'],
+        ignore_watch: [
+          '.git/',
+          '.idea',
+          '.pm2',
+          '**/spec/*.yaml',
+          'migrations',
+          './node_modules',
+          '.config',
+          '.ngrok',
+        ],
         time: true,
       },
     ]

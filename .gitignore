@@ -48,6 +48,9 @@ node_modules/
 # nodemon directory
 .config/
 
+# ngrok directory
+.ngrok/
+
 # config files
 config/config.json
 
@@ -56,3 +59,6 @@ config/config.json
 
 # Ignore public folder
 /public/*
+
+# Generated files
+**/**.csv
