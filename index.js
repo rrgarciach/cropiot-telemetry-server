@@ -4,7 +4,7 @@ const aedes = require('aedes')();
 const server = require('net').createServer(aedes.handle);
 const mqtt = require('mqtt');
 
-const telemetriesSQLService = require('./src/services/telemetries.sql.service');
+const telemetriesMYSQLService = require('./src/services/telemetries.mysql.service');
 
 const CONFIG = require('./src/config');
 
@@ -22,13 +22,13 @@ console.log('Running on environment:', process.env.NODE_ENV);
 
 server.listen(PORT, function () {
   console.info(`MQTT server started and listening on port ${PORT}`);
-  aedes.subscribe(TOPICS.TELEMETRY, function(packet, cb) {
+  aedes.subscribe(TOPICS.TELEMETRY, async function(packet, cb) {
     console.log('Published', packet.payload.toString());
     try {
       const payload = JSON.parse(packet.payload.toString());
       // saveTelemetry(payload, CONFIG.DYNAMODB.LOCAL);
       // saveTelemetry(payload, CONFIG.REMOTE);
-      telemetriesSQLService.insert(payload);
+      await telemetriesMYSQLService.insert(payload);
     } catch (err) {
       console.error(err);
     }

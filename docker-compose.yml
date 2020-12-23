@@ -1,8 +1,8 @@
-version: '3'
+version: '3.5'
 
-volumes:
-
-  dynamodb_data:
+#volumes:
+#
+#  dynamodb_data:
 
 services:
 
@@ -17,13 +17,30 @@ services:
       - /home/node/app/node_modules/
     ports:
       - 1883:1883
-#    depends_on:
-#      - telemetry-server-dynamodb
+    depends_on:
+      - telemetry-server-mysql
     environment:
       PORT: 1883
 #      LOCAL_DYNAMODB_HOST: http://telemetry-server-dynamodb:8000
-#    external_links:
-#      - telemetry-server-dynamodb
+      MYSQL_HOST: telemetry-server-mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: cropiot
+    external_links:
+      - telemetry-server-mysql
+    network_mode: bridge
+
+  telemetry-server-mysql:
+    container_name: telemetry-server-mysql
+    image: mysql:8
+    restart: on-failure
+    ports:
+      - 3306:3306
+    environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_PASSWORD: root
+        MYSQL_USER: root
+        MYSQL_DATABASE: cropiot
     network_mode: bridge
 
 #  telemetry-server-dynamodb:
