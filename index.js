@@ -8,7 +8,7 @@ const telemetriesMYSQLService = require('./src/services/telemetries.mysql.servic
 
 const CONFIG = require('./src/config');
 
-const PORT = process.env.PORT;
+const MQTT_PORT = process.env.MQTT_PORT || 1883;
 const TOPICS = {
   TELEMETRY: '/v1/devices/me/telemetry',
 };
@@ -20,8 +20,8 @@ let client;
 
 console.log('Running on environment:', process.env.NODE_ENV);
 
-server.listen(PORT, function () {
-  console.info(`MQTT server started and listening on port ${PORT}`);
+server.listen(MQTT_PORT, function () {
+  console.info(`MQTT server started and listening on port ${MQTT_PORT}`);
   aedes.subscribe(TOPICS.TELEMETRY, async function(packet, cb) {
     console.log('Published', packet.payload.toString());
     try {

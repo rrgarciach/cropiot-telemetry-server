@@ -20,7 +20,8 @@ services:
     depends_on:
       - telemetry-server-mysql
     environment:
-      PORT: 1883
+      PORT: 8080
+      MQTT_PORT: 1883
 #      LOCAL_DYNAMODB_HOST: http://telemetry-server-dynamodb:8000
       MYSQL_HOST: telemetry-server-mysql
       MYSQL_USER: root
