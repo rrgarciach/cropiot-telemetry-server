@@ -18,30 +18,31 @@ services:
     ports:
       - 1883:1883
     depends_on:
-      - telemetry-server-mysql
+      - telemetry-server-mariadb
     environment:
       PORT: 8080
       MQTT_PORT: 1883
 #      LOCAL_DYNAMODB_HOST: http://telemetry-server-dynamodb:8000
-      MYSQL_HOST: telemetry-server-mysql
+      MYSQL_HOST: telemetry-server-mariadb
       MYSQL_USER: root
-      MYSQL_PASSWORD: root
+#      MYSQL_PASSWORD: root
       MYSQL_DATABASE: cropiot
     external_links:
-      - telemetry-server-mysql
+      - telemetry-server-mariadb
     network_mode: bridge
 
-  telemetry-server-mysql:
-    container_name: telemetry-server-mysql
-    image: mysql:8
+  telemetry-server-mariadb:
+    container_name: telemetry-server-mariadb
+    image: mariadb
     restart: on-failure
     ports:
       - 3306:3306
     environment:
-        MYSQL_ROOT_PASSWORD: root
-        MYSQL_PASSWORD: root
-        MYSQL_USER: root
-        MYSQL_DATABASE: cropiot
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+#        MYSQL_ROOT_PASSWORD: root
+#        MYSQL_PASSWORD: root
+#        MYSQL_USER: root
+      MYSQL_DATABASE: cropiot
     network_mode: bridge
 
 #  telemetry-server-dynamodb:

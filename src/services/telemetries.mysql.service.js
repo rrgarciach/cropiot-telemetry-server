@@ -8,6 +8,7 @@ const pool = mysql.createPool({
   connectionLimit: 10,
   queueLimit: 0
 });
+console.info('process.env.DB_PASSWORD was ' + (!CONFIG.MYSQL.LOCAL.MYSQL_PASSWORD ? 'NOT ' : '') + 'set')
 
 function insert(data) {
   const {type, value, device} = data;
