@@ -10,12 +10,12 @@ const config = {
         autorestart: true
       },
       {
-        name: 'cron',
-        script: 'git pull && pm2 restart mqtt',
+        name: 'cronjob',
+        script: './cronjob.js',
         exec_mode: 'fork',
-        cron_restart: '* * * * *',
+        merge_logs: true,
         time: true,
-        autorestart: false
+        autorestart: false,
       }
     ]
   },
@@ -39,14 +39,6 @@ const config = {
           '*.sqlite*',
         ],
         time: true,
-      },
-      {
-        name: 'cronjob',
-        script: './cronjob.js',
-        exec_mode: 'fork',
-        merge_logs: true,
-        time: true,
-        autorestart: false,
       }
     ]
   },
