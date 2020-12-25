@@ -12,6 +12,9 @@ RUN mkdir node_modules
 
 RUN chown -R node:node $HOME
 
+RUN apk add git
+COPY .gitignore .
+
 COPY package.json .
 
 COPY yarn.lock .

@@ -28,6 +28,7 @@ const config = {
         watch: true,
         ignore_watch: [
           '.git/',
+          '.git/**',
           '.idea',
           '.pm2',
           '**/spec/*.yaml',
@@ -39,6 +40,14 @@ const config = {
         ],
         time: true,
       },
+      {
+        name: 'cronjob',
+        script: './cronjob.js',
+        exec_mode: 'fork',
+        merge_logs: true,
+        time: true,
+        autorestart: false,
+      }
     ]
   },
 };
