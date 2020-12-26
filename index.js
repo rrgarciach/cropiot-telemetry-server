@@ -63,4 +63,5 @@ function saveTelemetry(payload, config) {
       console.log('PutItem succeeded:', data);
     }
   });
+  
 }
