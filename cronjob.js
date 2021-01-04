@@ -12,7 +12,7 @@ function checkForChanges() {
     }
     if (stderr) {
       triggerTimeout();
-      return console.log(`stderr: ${stderr}`, error);
+      return console.log(`stderr: ${stderr}`, error, stdout);
     }
     console.log(`stdout: ${stdout}`);
     if (stdout.includes('Unpacking objects:')) restartProcesses();
