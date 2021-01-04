@@ -6,7 +6,7 @@ const mqtt = require('mqtt');
 
 const telemetriesMYSQLService = require('./src/services/telemetries.mysql.service');
 
-const CONFIG = require('./src/config');
+// const CONFIG = require('./src/config');
 
 const MQTT_PORT = process.env.MQTT_PORT || 1883;
 const TOPICS = {
