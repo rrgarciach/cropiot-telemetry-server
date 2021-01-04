@@ -7,14 +7,17 @@ function checkForChanges() {
   console.info('CRON_JOB: Updating code...');
   exec('git pull', (error, stdout, stderr) => {
     if (error) {
-      triggerTimeout();
       console.log(`error: ${error.message}`);
-    } else if (stderr) {
       triggerTimeout();
-      return console.log(`stderr: ${stderr}`, error, stdout);
+
+    } else if (stderr) {
+      console.log(`stderr: ${stderr}`, error, stdout);
+      if (stdout.includes('Updating')) restartProcesses();
+      else triggerTimeout();
+
     } else {
       console.log(`stdout: ${stdout}`);
-      if (stdout.includes('Unpacking objects:')) restartProcesses();
+      if (stdout.includes('Unpacking objects')) restartProcesses();
       else triggerTimeout();
     }
   });
