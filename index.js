@@ -55,11 +55,8 @@ function saveTelemetry(payload, config) {
   };
 
   docClient.put(params, function(err, data) {
-    if (err) {
-      console.error('Unable to add Telemetry', '. Error JSON:', JSON.stringify(err, null, 2));
-    } else {
-      console.log('PutItem succeeded:', data);
-    }
+    if (err) console.error('Unable to add Telemetry', '. Error JSON:', JSON.stringify(err, null, 2));
+    else console.log('PutItem succeeded:', data);
   });
   
 }
