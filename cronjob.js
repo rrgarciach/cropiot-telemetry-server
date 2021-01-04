@@ -8,15 +8,15 @@ function checkForChanges() {
   exec('git pull', (error, stdout, stderr) => {
     if (error) {
       triggerTimeout();
-      return console.log(`error: ${error.message}`);
-    }
-    if (stderr) {
+      console.log(`error: ${error.message}`);
+    } else if (stderr) {
       triggerTimeout();
       return console.log(`stderr: ${stderr}`, error, stdout);
+    } else {
+      console.log(`stdout: ${stdout}`);
+      if (stdout.includes('Unpacking objects:')) restartProcesses();
+      else triggerTimeout();
     }
-    console.log(`stdout: ${stdout}`);
-    if (stdout.includes('Unpacking objects:')) restartProcesses();
-    else triggerTimeout();
   });
 }
 
