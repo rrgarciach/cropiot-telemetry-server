@@ -16,8 +16,6 @@ const TYPES = {
   PH: 'ph',
 };
 
-let client;
-
 console.log('Running on environment:', process.env.NODE_ENV);
 
 server.listen(MQTT_PORT, function () {
