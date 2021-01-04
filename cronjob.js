@@ -2,8 +2,6 @@ const {exec} = require('child_process');
 
 const SECONDS_TO_RESTART = process.env.SECONDS_TO_RESTART || 3600;
 
-triggerTimeout();
-
 function checkForChanges() {
   console.info('CRON_JOB: Updating code...');
   exec('git pull', (error, stdout, stderr) => {
@@ -28,3 +26,6 @@ function restartProcesses() {
     console.log(`stdout: ${stdout}`);
   });
 }
+
+triggerTimeout();
+process.stdin.resume();
