@@ -1,3 +1,4 @@
+require('dotenv').config();
 const {exec} = require('child_process');
 
 const SECONDS_TO_RESTART = process.env.SECONDS_TO_RESTART || 3600;
