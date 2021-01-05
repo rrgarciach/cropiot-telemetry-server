@@ -10,7 +10,7 @@ const telemetriesMYSQLService = require('./src/services/telemetries.mysql.servic
 
 const MQTT_PORT = process.env.MQTT_PORT || 1883;
 const TOPICS = {
-  TELEMETRY: '/v1/devices/me/telemetry',
+  TELEMETRY: 'v1/devices/me/telemetry',
 };
 const TYPES = {
   PH: 'ph',
