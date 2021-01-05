@@ -20,7 +20,7 @@ console.log('Running on environment:', process.env.NODE_ENV);
 
 server.listen(MQTT_PORT, function () {
   console.info(`MQTT server started and listening on port ${MQTT_PORT}`);
-  aedes.on('client', console.log);
+  aedes.on('client', ({id}) => console.log(`client ${id} connected`));
   aedes.subscribe(TOPICS.TELEMETRY, async function(packet, cb) {
     console.log('Published', packet.payload.toString());
     try {
