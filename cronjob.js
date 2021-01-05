@@ -8,7 +8,7 @@ function checkForChanges() {
   exec('git pull', (error, stdout, stderr) => {
     if (error) {
       console.log(`error: ${error.message}`);
-      triggerTimeout();;
+      triggerTimeout();
 
     } else if (stderr) {
       console.log(`stderr: ${stderr}`, error, stdout);
